@@ -24,7 +24,15 @@ class Instructor extends Person {
   }
 
   grade(student, subject) {
-    return `${student.name} revceives a perfect score on ${subject} `;
+    return `${student.name} receives a perfect score on ${subject} `;
+  }
+
+  randomGrade(student) {
+    console.log(student.grade);
+    var num = Math.floor(Math.random() * 10) + 1; // this will get a number between 1 and 10; floor just rounds down to nearest whole number
+    num *= Math.floor(Math.random() * 2) == 1 ? 1 : -1; //produce a negative number 50% of time
+    student.grade = student.grade + num;
+    console.log(student.grade);
   }
 }
 
@@ -34,6 +42,8 @@ class Student extends Person {
     this.previousBackground = aStudent.previousBackground;
     this.className = aStudent.className;
     this.favSubjects = aStudent.favSubjects;
+    this.grade = aStudent.grade;
+    this.status = aStudent.status;
   }
 
   listSubjects(student) {
@@ -56,6 +66,17 @@ class Student extends Person {
 
   sprintChallenge(subject) {
     return `${this.name} has begun a sprint challenge on ${subject}`;
+  }
+
+  graduate() {
+    if (this.grade > 70) {
+      console.log(`${this.name} is ready to graduate`);
+      //potentially have a status key which could be turned to graduate vs current student
+      this.status = 'Graduated';
+    } else {
+      console.log(`${this.name} needs to continue their studies...`);
+      this.status = this.status;
+    }
   }
 }
 
@@ -101,13 +122,16 @@ const theStudent = new Student({
   age: 27,
   previousBackground: 'Bar Tender',
   className: 'WebPT9',
-  favSubjects: ['Beat Shazam', 'Dance', 'Javascript', 'NodeJS']
+  favSubjects: ['Beat Shazam', 'Dance', 'Javascript', 'NodeJS'],
+  grade: 90,
+  status: 'current student'
 });
 
 console.log(' ');
 console.log(fred.demo('Javascript'));
 console.log(fred.grade(theStudent, 'Math'));
 console.log(fred.speak());
+fred.randomGrade(theStudent);
 console.log(' ');
 
 theStudent.listSubjects();
@@ -119,7 +143,13 @@ console.log(theStudent.sprintChallenge('Javascript'));
 console.log(' ');
 console.log(projectManager.standUp('WebPT9'));
 console.log(projectManager.debugsCode(theStudent, 'Javascript'));
-
+console.log(' ');
 // console.log(theStudent);
 // console.log(projectManager);
 // console.log(fred);
+
+console.log(theStudent);
+console.log(' ');
+theStudent.graduate();
+console.log(' ');
+console.log(theStudent);
