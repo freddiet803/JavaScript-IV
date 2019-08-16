@@ -37,12 +37,14 @@ class Student extends Person {
   }
 
   listSubjects(student) {
+    console.log(`${this.name}'s favorite subjects are: `);
     student.favSubjects.forEach(element => {
       console.log(element);
     });
   }
 
   listSubjects() {
+    console.log(`${this.name}'s favorite subjects are: `);
     let arr = this.favSubjects;
     arr.forEach(element => {
       console.log(element);
@@ -83,11 +85,11 @@ const fred = new Instructor({
 });
 
 const projectManager = new ProjectManager({
-  name: 'Fred',
+  name: 'Shredder',
   location: 'Bedrock',
-  age: 37,
-  favLanguage: 'JavaScript',
-  specialty: 'Front-end',
+  age: 370,
+  favLanguage: 'NodeJS',
+  specialty: 'Back-end',
   catchPhrase: `Don't forget the homies`,
   gradClassName: `Classof2019`,
   favInstructor: `Freddie Thompson`
@@ -102,18 +104,22 @@ const theStudent = new Student({
   favSubjects: ['Beat Shazam', 'Dance', 'Javascript', 'NodeJS']
 });
 
+console.log(' ');
 console.log(fred.demo('Javascript'));
 console.log(fred.grade(theStudent, 'Math'));
 console.log(fred.speak());
 console.log(' ');
 
 theStudent.listSubjects();
+console.log(' ');
 theStudent.listSubjects(theStudent);
-
+console.log(' ');
 console.log(theStudent.prAssignment('math'));
 console.log(theStudent.sprintChallenge('Javascript'));
 console.log(' ');
 console.log(projectManager.standUp('WebPT9'));
 console.log(projectManager.debugsCode(theStudent, 'Javascript'));
 
-//console.log(theStudent);
+// console.log(theStudent);
+// console.log(projectManager);
+// console.log(fred);
